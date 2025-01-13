@@ -5,6 +5,7 @@ go 1.23.0
 require (
 	github.com/a-h/templ v0.3.819
 	github.com/glebarez/go-sqlite v1.22.0
+	github.com/golang-jwt/jwt/v5 v5.2.1
 )
 
 require (

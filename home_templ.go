@@ -8,7 +8,7 @@ package main
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-func Home(username string) templ.Component {
+func Home() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -33,20 +33,32 @@ func Home(username string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3\" role=\"alert\"><p class=\"font-bold\">Welcome ")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		return templ_7745c5c3_Err
+	})
+}
+
+func Account() templ.Component {
+	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
+		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
+		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
+			return templ_7745c5c3_CtxErr
 		}
-		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(username)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 6, Col: 41}
+		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
+		if !templ_7745c5c3_IsBuffer {
+			defer func() {
+				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
+				if templ_7745c5c3_Err == nil {
+					templ_7745c5c3_Err = templ_7745c5c3_BufErr
+				}
+			}()
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		ctx = templ.InitializeContext(ctx)
+		templ_7745c5c3_Var2 := templ.GetChildren(ctx)
+		if templ_7745c5c3_Var2 == nil {
+			templ_7745c5c3_Var2 = templ.NopComponent
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div>")
+		ctx = templ.ClearChildren(ctx)
+		templ_7745c5c3_Err = Base().Render(ctx, templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -54,7 +66,7 @@ func Home(username string) templ.Component {
 	})
 }
 
-func Login(username, errorMsg string) templ.Component {
+func Something(name, email string) templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
@@ -79,224 +91,81 @@ func Login(username, errorMsg string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if errorMsg != "" {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div role=\"alert\"><div class=\"border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700\"><p>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var4 string
-			templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(errorMsg)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 15, Col: 17}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div></div>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"relative flex justify-center overflow-hidden bg-gray-50 py-6 sm:py-12\"><div class=\"flex-1 mx-auto w-full max-w-md bg-white px-6 pt-6 pb-6 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-8\"><div class=\"w-full\"><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your username is</h1><p class=\"mt-2 text-gray-500\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"h-screen flex items-center justify-center\"><form class=\"w-full max-w-sm\" action=\"/login\" method=\"get\" id=\"login-form\"><div class=\"md:flex md:items-center mb-6\"><div class=\"md:w-1/3\"><label class=\"block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4\" for=\"username\">Username</label></div><div class=\"md:w-2/3\"><input class=\"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500\" id=\"username\" name=\"username\" type=\"text\" value=\"")
+		var templ_7745c5c3_Var4 string
+		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(name)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 18, Col: 41}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your email is</h1><p class=\"mt-2 text-gray-500\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var5 string
-		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(username)
+		templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(email)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 28, Col: 242}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 22, Col: 42}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></div></div><div class=\"md:flex md:items-center mb-6\"><div class=\"md:w-1/3\"><label class=\"block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4\" for=\"password\">Password</label></div><div class=\"md:w-2/3\"><input class=\"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500\" id=\"password\" name=\"password\" type=\"password\"></div></div><div class=\"md:flex md:items-center\"><div class=\"md:w-1/3\"></div><div class=\"md:w-2/3\"><button class=\"shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded\" type=\"submit\" form=\"login-form\">Login</button></div></div></form></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div></div></div><div class=\"flex-1 mx-auto w-full max-w-md bg-white px-6 pt-6 pb-6 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-8\"><div class=\"w-full\"><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your username is</h1><p class=\"mt-2 text-gray-500\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		return templ_7745c5c3_Err
-	})
-}
-
-func Signup(username, password, errorMsg string) templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
+		var templ_7745c5c3_Var6 string
+		templ_7745c5c3_Var6, templ_7745c5c3_Err = templ.JoinStringErrs(name)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 30, Col: 41}
 		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
-		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var6 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var6 == nil {
-			templ_7745c5c3_Var6 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = Base().Render(ctx, templ_7745c5c3_Buffer)
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var6))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		if errorMsg != "" {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div role=\"alert\"><div class=\"border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700\"><p>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			var templ_7745c5c3_Var7 string
-			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(errorMsg)
-			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 58, Col: 17}
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div></div>")
-			if templ_7745c5c3_Err != nil {
-				return templ_7745c5c3_Err
-			}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your email is</h1><p class=\"mt-2 text-gray-500\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"h-screen flex items-center justify-center\"><form class=\"w-full max-w-sm\" action=\"/signup\" method=\"get\" id=\"signup-form\"><div class=\"md:flex md:items-center mb-6\"><div class=\"md:w-1/3\"><label class=\"block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4\" for=\"username\">Username</label></div><div class=\"md:w-2/3\"><input class=\"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500\" id=\"username\" name=\"username\" type=\"text\" value=\"")
+		var templ_7745c5c3_Var7 string
+		templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(email)
+		if templ_7745c5c3_Err != nil {
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 34, Col: 42}
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div></div></div><div class=\"flex-1 mx-auto w-full max-w-md bg-white px-6 pt-6 pb-6 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-8\"><div class=\"w-full\"><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your username is</h1><p class=\"mt-2 text-gray-500\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var8 string
-		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(username)
+		templ_7745c5c3_Var8, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 71, Col: 242}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 42, Col: 41}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var8))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></div></div><div class=\"md:flex md:items-center mb-6\"><div class=\"md:w-1/3\"><label class=\"block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4\" for=\"password\">Password</label></div><div class=\"md:w-2/3\"><input class=\"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500\" id=\"password\" name=\"password\" type=\"password\" value=\"")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your email is</h1><p class=\"mt-2 text-gray-500\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var9 string
-		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(password)
+		templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(email)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 81, Col: 246}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 46, Col: 42}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"></div></div><div class=\"md:flex md:items-center mb-6\"><div class=\"md:w-1/3\"><label class=\"block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4\" for=\"confirm-password\">Confirm Password</label></div><div class=\"md:w-2/3\"><input class=\"bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500\" id=\"confirm-password\" name=\"confirm-password\" type=\"password\"></div></div><div class=\"md:flex md:items-center\"><div class=\"md:w-1/3\"></div><div class=\"md:w-2/3\"><button class=\"shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded\" type=\"submit\" form=\"signup-form\">Create account</button></div></div></form></div>")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		return templ_7745c5c3_Err
-	})
-}
-
-func Something(name, email string) templ.Component {
-	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
-		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
-		if templ_7745c5c3_CtxErr := ctx.Err(); templ_7745c5c3_CtxErr != nil {
-			return templ_7745c5c3_CtxErr
-		}
-		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
-		if !templ_7745c5c3_IsBuffer {
-			defer func() {
-				templ_7745c5c3_BufErr := templruntime.ReleaseBuffer(templ_7745c5c3_Buffer)
-				if templ_7745c5c3_Err == nil {
-					templ_7745c5c3_Err = templ_7745c5c3_BufErr
-				}
-			}()
-		}
-		ctx = templ.InitializeContext(ctx)
-		templ_7745c5c3_Var10 := templ.GetChildren(ctx)
-		if templ_7745c5c3_Var10 == nil {
-			templ_7745c5c3_Var10 = templ.NopComponent
-		}
-		ctx = templ.ClearChildren(ctx)
-		templ_7745c5c3_Err = Base().Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"relative flex justify-center overflow-hidden bg-gray-50 py-6 sm:py-12\"><div class=\"flex-1 mx-auto w-full max-w-md bg-white px-6 pt-6 pb-6 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-8\"><div class=\"w-full\"><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your username is</h1><p class=\"mt-2 text-gray-500\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var11 string
-		templ_7745c5c3_Var11, templ_7745c5c3_Err = templ.JoinStringErrs(name)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 113, Col: 41}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var11))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your email is</h1><p class=\"mt-2 text-gray-500\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var12 string
-		templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(email)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 117, Col: 42}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div></div></div><div class=\"flex-1 mx-auto w-full max-w-md bg-white px-6 pt-6 pb-6 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-8\"><div class=\"w-full\"><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your username is</h1><p class=\"mt-2 text-gray-500\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var13 string
-		templ_7745c5c3_Var13, templ_7745c5c3_Err = templ.JoinStringErrs(name)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 125, Col: 41}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var13))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your email is</h1><p class=\"mt-2 text-gray-500\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var14 string
-		templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(email)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 129, Col: 42}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div></div></div><div class=\"flex-1 mx-auto w-full max-w-md bg-white px-6 pt-6 pb-6 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-8\"><div class=\"w-full\"><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your username is</h1><p class=\"mt-2 text-gray-500\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var15 string
-		templ_7745c5c3_Var15, templ_7745c5c3_Err = templ.JoinStringErrs(name)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 137, Col: 41}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var15))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</p></div><div class=\"text-center\"><h1 class=\"text-3xl font-semibold text-gray-900\">Your email is</h1><p class=\"mt-2 text-gray-500\">")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var16 string
-		templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(email)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `home.templ`, Line: 141, Col: 42}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
